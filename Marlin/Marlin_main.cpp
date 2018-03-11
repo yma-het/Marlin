@@ -261,6 +261,10 @@
 #include "types.h"
 #include "gcode.h"
 
+#if ENABLED(Z_WOBBLE_COMPENSATION)
+  #include "ZWobble.h"
+#endif
+
 #if HAS_ABL
   #include "vector_3.h"
   #if ENABLED(AUTO_BED_LEVELING_LINEAR)
@@ -11745,6 +11749,10 @@ void process_parsed_command() {
     break;
 
     case 'M': switch (parser.codenum) {
+      #if ENABLED(Z_WOBBLE_COMPENSATION)
+        DECLARE_ZWOBBLE_MCODES(96, 97)
+      #endif
+
       #if HAS_RESUME_CONTINUE
         case 0: // M0: Unconditional stop - Wait for user button press on LCD
         case 1: // M1: Conditional stop - Wait for user button press on LCD

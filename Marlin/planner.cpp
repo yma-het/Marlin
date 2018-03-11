@@ -66,6 +66,9 @@
 #include "language.h"
 #include "ubl.h"
 #include "gcode.h"
+#if ENABLED(Z_WOBBLE_COMPENSATION)
+  #include "ZWobble.h"
+#endif
 
 #include "Marlin.h"
 
@@ -1413,6 +1416,11 @@ void Planner::_buffer_steps(const int32_t (&target)[XYZE], float fr_mm_s, const 
  *  extruder  - target extruder
  */
 void Planner::buffer_segment(const float &a, const float &b, const float &c, const float &e, const float &fr_mm_s, const uint8_t extruder) {
+
+  #if ENABLED(Z_WOBBLE_COMPENSATION)
+    zwobble.InsertCorrection(c, position);
+  #endif
+
   // When changing extruders recalculate steps corresponding to the E position
   #if ENABLED(DISTINCT_E_FACTORS)
     if (last_extruder != extruder && axis_steps_per_mm[E_AXIS_N] != axis_steps_per_mm[E_AXIS + last_extruder]) {
