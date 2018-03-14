@@ -332,10 +332,10 @@
 // This feature exists to protect your hotend from overheating accidentally, but *NOT* from thermistor short/failure!
 // You should use MINTEMP for thermistor short/failure protection.
 #define HEATER_0_MAXTEMP 275
-#define HEATER_1_MAXTEMP 275
-#define HEATER_2_MAXTEMP 275
-#define HEATER_3_MAXTEMP 275
-#define HEATER_4_MAXTEMP 275
+#define HEATER_1_MAXTEMP 1
+#define HEATER_2_MAXTEMP 1
+#define HEATER_3_MAXTEMP 1
+#define HEATER_4_MAXTEMP 1
 #define BED_MAXTEMP 150
 
 //===========================================================================
@@ -779,8 +779,8 @@
 
 // Direction of endstops when homing; 1=MAX, -1=MIN
 // :[-1,1]
-#define X_HOME_DIR -1
-#define Y_HOME_DIR -1
+#define X_HOME_DIR 1
+#define Y_HOME_DIR 1
 #define Z_HOME_DIR -1
 
 // @section machine
@@ -1024,9 +1024,9 @@
 
 // Manually set the home position. Leave these undefined for automatic settings.
 // For DELTA this is the top-center of the Cartesian print volume.
-//#define MANUAL_X_HOME_POS 0
-//#define MANUAL_Y_HOME_POS 0
-//#define MANUAL_Z_HOME_POS 0
+#define MANUAL_X_HOME_POS 159
+#define MANUAL_Y_HOME_POS 150
+#define MANUAL_Z_HOME_POS 0
 
 // Functional definition of maximum extrusion length
 #define X_EXTRUDE_MAX_LENGTH (X_MAX_POS - X_MIN_POS)
